@@ -45,7 +45,7 @@ class Window:
         
 
 class Cell:
-    def __init__(self, win: Window,):
+    def __init__(self, win: Window=None):
         self.left = True
         self.right = True
         self.top = True
@@ -66,15 +66,28 @@ class Cell:
         if self.left:
             line = Line(Point(x1,y1), Point(x1, y2))
             self._win.draw_line(line)
+        if self.left == False: 
+            line = Line(Point(x1,y1), Point(x1, y2))
+            self._win.draw_line(line, "white")
         if self.top:
-            line = Line(Point(x1,y2), Point(x2, y2))
+            line = Line(Point(x1,y1), Point(x2, y1))
             self._win.draw_line(line)
+        if self.top == False:
+            line = Line(Point(x1,y1), Point(x2, y1))
+            self._win.draw_line(line, "white")
         if self.right:
             line = Line(Point(x2,y2), Point(x2, y1))
             self._win.draw_line(line)
+        if self.right == False:
+            line = Line(Point(x2,y2), Point(x2, y1))
+            self._win.draw_line(line, "white")
         if self.bottom:
-            line = Line(Point(x2,y1), Point(x1, y1))
+            line = Line(Point(x1, y2), Point(x2, y2))
             self._win.draw_line(line)
+        if self.bottom == False:
+            line = Line(Point(x1, y2), Point(x2, y2))
+            self._win.draw_line(line, "white")
+
 
     def draw_move(self, to_cell, undo=False):
         half_dist = abs(self._x2 - self._x1) // 2
